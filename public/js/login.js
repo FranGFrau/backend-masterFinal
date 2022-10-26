@@ -1,7 +1,7 @@
 (async () => {
   try {
     const request = await fetch(
-      "https://zippy-squirrel-98cd89.netlify.app/api/cuenta/verify"
+      "https://bckendpp.herokuapp.com/api/cuenta/verify"
     );
     const { authentication } = await request.json();
 
@@ -20,7 +20,7 @@ const login = async (e) => {
   const { username, password } = e.target;
 
   const request = await fetch(
-    "https://zippy-squirrel-98cd89.netlify.app/api/cuenta/login",
+    "https://bckendpp.herokuapp.com/api/cuenta/login",
     {
       method: "POST",
       body: JSON.stringify({
@@ -59,7 +59,7 @@ const createNew = async (e) => {
   formData.append("age", age.value);
 
   const request = await fetch(
-    "https://zippy-squirrel-98cd89.netlify.app/api/cuenta/nuevo",
+    "https://bckendpp.herokuapp.com/api/cuenta/nuevo",
     {
       method: "POST",
       body: formData,

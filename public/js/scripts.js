@@ -10,7 +10,7 @@ const contenedorPerfil = document.querySelector("#contenedorPerfil");
 (async () => {
   try {
     const request = await fetch(
-      "https://zippy-squirrel-98cd89.netlify.app/api/cuenta/verify"
+      "https://bckendpp.herokuapp.com/api/cuenta/verify"
     );
     const { authentication } = await request.json();
 
@@ -25,7 +25,7 @@ const contenedorPerfil = document.querySelector("#contenedorPerfil");
 const getCartId = async () => {
   const clientId = sessionStorage.getItem("clientId");
   const request = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${clientId}`
+    `https://bckendpp.herokuapp.com/api/carrito/${clientId}`
   );
   const { cartId } = await request.json();
 
@@ -33,7 +33,7 @@ const getCartId = async () => {
     sessionStorage.setItem("cartId", cartId);
   } else {
     const request = await fetch(
-      `https://zippy-squirrel-98cd89.netlify.app/api/carrito/?clientId=${clientId}`,
+      `https://bckendpp.herokuapp.com/api/carrito/?clientId=${clientId}`,
       { method: "POST" }
     );
     const { id } = await request.json();
@@ -50,13 +50,13 @@ if (!admin) {
 
 const renderPerfil = async () => {
   const request = await fetch(
-    "https://zippy-squirrel-98cd89.netlify.app/api/cuenta/perfil"
+    "https://bckendpp.herokuapp.com/api/cuenta/perfil"
   );
   const response = await request.json();
 
   contenedorPerfil.innerHTML += `
   <div class="text-center">
-  <img src="https://zippy-squirrel-98cd89.netlify.app${response.avatar.replace(
+  <img src="https://bckendpp.herokuapp.com${response.avatar.replace(
     "/public",
     ""
   )}" alt="avatar" class="avatarImg"/>
@@ -78,7 +78,7 @@ const renderPerfil = async () => {
 const logout = async (e) => {
   if (!e.target.matches(".btnLogout")) return;
 
-  await fetch("https://zippy-squirrel-98cd89.netlify.app/api/cuenta/logout");
+  await fetch("https://bckendpp.herokuapp.com/api/cuenta/logout");
 
   location.href = "./login.html";
 };
@@ -87,7 +87,7 @@ const renderCarrito = async () => {
   const cartId = sessionStorage.getItem("cartId");
   document.querySelector("#cartId").innerHTML = cartId;
   const cartRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${cartId}/productos`
+    `https://bckendpp.herokuapp.com/api/carrito/${cartId}/productos`
   );
   const cartProducts = await cartRef.json();
 
@@ -143,7 +143,7 @@ const renderCarrito = async () => {
 
 const renderProductos = async () => {
   const productosRef = await fetch(
-    "https://zippy-squirrel-98cd89.netlify.app/api/productos"
+    "https://bckendpp.herokuapp.com/api/productos"
   );
   const productos = await productosRef.json();
   contenedorProductos.innerHTML = "";
@@ -193,7 +193,7 @@ const agregarAlCarrito = async (e) => {
   const cartId = sessionStorage.getItem("cartId");
   const idProducto = e.target.dataset.id;
   const productoRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/productos/${idProducto}`
+    `https://bckendpp.herokuapp.com/api/productos/${idProducto}`
   );
   const producto = await productoRef.json();
   if ("_id" in producto) {
@@ -201,7 +201,7 @@ const agregarAlCarrito = async (e) => {
     delete producto._id;
   }
   const cartRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${cartId}/productos`,
+    `https://bckendpp.herokuapp.com/api/carrito/${cartId}/productos`,
     {
       method: "POST",
       headers: {
@@ -218,7 +218,7 @@ const eliminarDelCarrito = async (e) => {
   const cartId = sessionStorage.getItem("cartId");
   const idProducto = e.target.dataset.id;
   const cartRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${cartId}/productos/${idProducto}`,
+    `https://bckendpp.herokuapp.com/api/carrito/${cartId}/productos/${idProducto}`,
     {
       method: "DELETE",
     }
@@ -238,7 +238,7 @@ const eliminarCarrito = async (e) => {
   if (!e.target.matches(".btnEliminarCarrito")) return;
   const cartId = sessionStorage.getItem("cartId");
   const cartRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${cartId}`,
+    `https://bckendpp.herokuapp.com/api/carrito/${cartId}`,
     {
       method: "DELETE",
     }
@@ -258,7 +258,7 @@ const comprarCarrito = async (e) => {
   const cartId = sessionStorage.getItem("cartId");
 
   const request = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/carrito/${cartId}/purchase`
+    `https://bckendpp.herokuapp.com/api/carrito/${cartId}/purchase`
   );
   const response = await request.json();
 
@@ -282,7 +282,7 @@ const cargarProducto = async (e) => {
   const photoUrl = e.target[5].value;
 
   const productRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/productos/`,
+    `https://bckendpp.herokuapp.com/api/productos/`,
     {
       method: "POST",
       headers: {
@@ -328,7 +328,7 @@ const editarProducto = async (e) => {
   const idProducto = e.target.dataset.id;
 
   const productRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/productos/${idProducto}`,
+    `https://bckendpp.herokuapp.com/api/productos/${idProducto}`,
     {
       method: "PUT",
       headers: {
@@ -353,7 +353,7 @@ const borrarProducto = async (e) => {
   const idProducto = e.target.dataset.id;
 
   const productRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/productos/${idProducto}`,
+    `https://bckendpp.herokuapp.com/api/productos/${idProducto}`,
     {
       method: "DELETE",
       headers: {
@@ -369,7 +369,7 @@ const renderEditarProducto = async (e) => {
   if (!e.target.matches(".btnEditarProducto")) return;
   const idProducto = e.target.dataset.id;
   const productoRef = await fetch(
-    `https://zippy-squirrel-98cd89.netlify.app/api/productos/${idProducto}`
+    `https://bckendpp.herokuapp.com/api/productos/${idProducto}`
   );
   const producto = await productoRef.json();
   contenedorProductos.innerHTML = `<form class="row justify-content-center bg-light p-4" id="formEditarProducto" data-id="${
