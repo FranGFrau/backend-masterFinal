@@ -1,8 +1,6 @@
 (async () => {
   try {
-    const request = await fetch(
-      "https://bckendpp.herokuapp.com/api/cuenta/verify"
-    );
+    const request = await fetch("http://localhost:8080/api/cuenta/verify");
     const { authentication } = await request.json();
 
     if (authentication) {
@@ -19,17 +17,14 @@ const login = async (e) => {
 
   const { username, password } = e.target;
 
-  const request = await fetch(
-    "https://bckendpp.herokuapp.com/api/cuenta/login",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value,
-      }),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  const request = await fetch("http://localhost:8080/api/cuenta/login", {
+    method: "POST",
+    body: JSON.stringify({
+      username: username.value,
+      password: password.value,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
   const response = await request.json();
 
   if (response.success) {
@@ -58,13 +53,10 @@ const createNew = async (e) => {
   formData.append("cellphone", cellphone.value);
   formData.append("age", age.value);
 
-  const request = await fetch(
-    "https://bckendpp.herokuapp.com/api/cuenta/nuevo",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  const request = await fetch("http://localhost:8080/api/cuenta/nuevo", {
+    method: "POST",
+    body: formData,
+  });
   const response = await request.json();
 
   if (response.success) {

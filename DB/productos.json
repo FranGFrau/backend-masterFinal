@@ -16,7 +16,7 @@
         "photoUrl": "https://resource.logitechg.com/w_1000,c_limit,q_auto,f_auto,dpr_auto/d_transparent.gif/content/dam/gaming/en/products/g915-tkl/g915-tkl-gallery-2-carbon-new.png?v=1",
         "stock": "44",
         "code": "312",
-        "timestamp": "4/7/2022, 11:33:40",
+        "timestamp": "26/10/2022 20:36:19",
         "id": 2
     },
     {
@@ -28,5 +28,15 @@
         "code": "231",
         "timestamp": "4/7/2022, 11:33:58",
         "id": 3
+    },
+    {
+        "name": "Pendrive",
+        "price": "1800",
+        "description": "Pendrive 64GB usb 3.2",
+        "photoUrl": "https://http2.mlstatic.com/D_Q_NP_902195-MLA51168014457_082022-R.webp",
+        "stock": "45",
+        "code": "44",
+        "timestamp": "27/10/2022 17:17:43",
+        "id": 4
     }
 ]
